@@ -1,0 +1,13 @@
+{
+  "target": "scanme.nmap.org",
+  "ports": [
+    {
+      "port": 22,
+      "banner": "SSH-2.0-OpenSSH_6.6.1p1 Ubuntu-2ubuntu2.13"
+    },
+    {
+      "port": 80,
+      "banner": "HTTP/1.1 400 Bad Request - Server: Apache/2.4.7 (Ubuntu)"
+    }
+  ]
+}
