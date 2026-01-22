@@ -2,6 +2,7 @@ import argparse
 
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from scanner.tcp_scanner import scan_port
+from scanner.grabber_banner import grab_banner
 
 def parse_ports(ports_input):
     if "-" in ports_input:
@@ -32,7 +33,12 @@ def main():
             port = future_to_port[future]
             if future.result():
                 open_ports.append(port)
-                print(f"[OPEN] Port {port}")
+
+                banner = grab_banner(target, port, 1.0)
+                if banner:
+                    print(f"[OPEN] Port {port} - {banner}")
+                else:
+                    print(f"[OPEN] Port {port}")
     
     if not open_ports:
         print("[-] Aucun port ouvert détecté")            
